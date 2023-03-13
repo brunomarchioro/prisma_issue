@@ -1,0 +1,16 @@
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["clientExtensions"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url = env("DATABASE_URL")
+}
+
+model SiteSample {
+  siteId String @id @default(dbgenerated("uuid_generate_v1()")) @map("site_id") @db.Uuid
+  translatesFrom String[] @map("translates_from") @db.VarChar(3)
+
+  @@map("site_sample")
+}
